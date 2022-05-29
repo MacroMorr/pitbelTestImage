@@ -13,7 +13,7 @@
             />
           </div>
 
-          <v-pagination v-model="page" :length="length" on:click="" />
+          <v-pagination v-if="images.length" v-model="page" :length="length" />
         </VCol>
       </VRow>
     </VContainer>

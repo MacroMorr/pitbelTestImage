@@ -28,15 +28,15 @@ class ImageController extends Controller
 
     public function upload(Request $request)
     {
-        $image = new ImagePitbel();
         $files = $request->file('images');
         if (!count($files)) {
             throw new RuntimeException('Files is not loaded!');
         }
 
         foreach ($files as $file) {
+            $userId = auth()->user()->id;
             $fileName = bin2hex(random_bytes(18)). ".{$file->getClientOriginalExtension()}";
-            $image = new ImagePitbel(['name' => $fileName]);
+            $image = new ImagePitbel(['name' => $fileName, 'user_id' => $userId]);
             $image->save();
             $file->move('img', $fileName);
         }

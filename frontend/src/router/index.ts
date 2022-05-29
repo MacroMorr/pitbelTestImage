@@ -3,6 +3,7 @@ import VueRouter, { RouteConfig } from "vue-router";
 import HomePage from "../views/HomePage.vue";
 import UploadPage from "../views/UploadPage.vue";
 import FilePage from "../views/FilePage.vue";
+import LoginPage from "../views/LoginPage.vue";
 
 Vue.use(VueRouter);
 
@@ -18,9 +19,14 @@ const routes: Array<RouteConfig> = [
     component: UploadPage,
   },
   {
-    path: "/:id",
+    path: "/:id(\\d+)",
     name: "View a file",
     component: FilePage,
+  },
+  {
+    path: "/login",
+    name: "Login",
+    component: LoginPage,
   },
 ];
 

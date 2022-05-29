@@ -13,11 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('user', function (Blueprint $table) {
-            $table->id('user_id');
-            $table->string('name');
-            $table->string('username')->unique();
-            $table->string('password');
+        Schema::create('image', function (Blueprint $table) {
+            $table->id();
+            $table->foreignId('user_id')->constrained('user');
+            $table->string('name')->nullable();
             $table->timestamps();
         });
     }
@@ -29,6 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('user');
+        Schema::dropIfExists('image_pitbels');
     }
 };

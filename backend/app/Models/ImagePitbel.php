@@ -10,6 +10,7 @@ class ImagePitbel extends Model
     use HasFactory;
     protected $table = 'image';
     protected $fillable = [
+        'user_id',
         'name',
     ];
     /**

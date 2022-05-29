@@ -11,7 +11,6 @@ class User extends Authentication implements JWTSubject
     use HasFactory;
 
     protected $table = 'user';
-    protected $primaryKey = 'user_id';
 
     protected $fillable = ['name', 'username', 'password'];
 

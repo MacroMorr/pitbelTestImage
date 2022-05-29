@@ -12,3 +12,14 @@ export type TList<T> = {
   images: T[];
   length: number;
 };
+
+export type TLoginParams = {
+  username: string;
+  password: string;
+};
+
+export type TLoginResponse = {
+  access_token: string;
+  token_type: string;
+  expires_in: number;
+};
