@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 
@@ -21,6 +20,9 @@ class AuthController extends Controller
         $this->middleware('auth:api', ['except' => ['login', 'register']]);
     }
 
+    /**
+     * @return JsonResponse
+     */
     public function register(): JsonResponse
     {
         $credentials = request(['params'])['params'];
@@ -29,7 +31,7 @@ class AuthController extends Controller
             'password' => 'required',
         ]);
 
-        if ($validator->fails()){
+        if ($validator->fails()) {
             return response()->json(['messages' => $validator->errors()->all()], 401);
         }
 
