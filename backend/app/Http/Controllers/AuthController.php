@@ -2,7 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
 
 
 class AuthController extends Controller
@@ -14,7 +18,28 @@ class AuthController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth:api', ['except' => ['login']]);
+        $this->middleware('auth:api', ['except' => ['login', 'register']]);
+    }
+
+    public function register(): JsonResponse
+    {
+        $credentials = request(['params'])['params'];
+        $validator = Validator::make($credentials, [
+            'username' => 'required|unique:user',
+            'password' => 'required',
+        ]);
+
+        if ($validator->fails()){
+            return response()->json(['messages' => $validator->errors()->all()], 401);
+        }
+
+        $user = new User([
+            'username' => $credentials['username'],
+            'password' => Hash::make($credentials['username']),
+        ]);
+        $user->save();
+
+        return $this->login();
     }
 
     /**

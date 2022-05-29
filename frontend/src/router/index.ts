@@ -4,6 +4,7 @@ import HomePage from "../views/HomePage.vue";
 import UploadPage from "../views/UploadPage.vue";
 import FilePage from "../views/FilePage.vue";
 import LoginPage from "../views/LoginPage.vue";
+import RegisterPage from "../views/RegisterPage.vue";
 
 Vue.use(VueRouter);
 
@@ -27,6 +28,11 @@ const routes: Array<RouteConfig> = [
     path: "/login",
     name: "Login",
     component: LoginPage,
+  },
+  {
+    path: "/register",
+    name: "Register",
+    component: RegisterPage,
   },
 ];
 

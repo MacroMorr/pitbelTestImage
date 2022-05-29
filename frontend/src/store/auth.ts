@@ -26,11 +26,24 @@ export default {
       }
     },
 
-    login(store: any, { username, password }: TLoginParams) {
-      return AuthApi.login({
-        username,
-        password,
-      })
+    register(store: any, params: TLoginParams): Promise<any> {
+      return AuthApi.register(params)
+        .then(({ access_token }) => {
+          document.cookie = `token=${access_token}`;
+          setCookie("token", access_token);
+          axios.defaults.headers.common["Authorization"] = `Bearer ${access_token}`;
+          store.commit("setToken", access_token);
+          store.commit("setIsAuth", true);
+        })
+        .catch(({response: {data: message}}) => {
+          return new Promise((resolve, reject) => {
+            return reject(message);
+          });
+        });
+    },
+
+    login(store: any, params: TLoginParams) {
+      return AuthApi.login(params)
         .then(({ access_token }) => {
           document.cookie = `token=${access_token}`;
           setCookie("token", access_token);

@@ -7,6 +7,8 @@
       <span> | </span>
       <a class="logout" v-if="isAuth" v-on:click="logout">Logout</a>
       <router-link v-else to="/login">Login</router-link>
+      <span v-if="!isAuth"> | </span>
+      <router-link v-if="!isAuth" to="/register">Register</router-link>
     </nav>
     <router-view />
   </v-app>

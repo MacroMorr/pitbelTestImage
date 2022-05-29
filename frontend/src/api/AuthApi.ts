@@ -2,6 +2,10 @@ import API from "@/api/API";
 import { TLoginResponse, TLoginParams } from "@/types";
 
 class AuthApi extends API {
+  register(params: TLoginParams): Promise<TLoginResponse> {
+    return this.post("/api/register", params);
+  }
+
   login(params: TLoginParams): Promise<TLoginResponse> {
     return this.post("/api/login", params);
   }
