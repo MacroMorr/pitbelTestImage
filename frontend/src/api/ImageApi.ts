@@ -1,9 +1,9 @@
 import API from "@/api/API";
-import { TList, TListParams, TListItem } from "@/types";
+import {TList, TListItem, TListParams} from "@/types";
 
 class ImageApi extends API {
   async getList(params: TListParams): Promise<TList<TListItem>> {
-    return await this.get("/api/", params);
+    return await this.get("/api/image/list", params);
   }
 
   async upload(files: File[]): Promise<number[]> {
@@ -12,11 +12,11 @@ class ImageApi extends API {
     files.map((file) => {
       formData.append("images[]", file);
     });
-    return await this.uploadFiles(`/api/upload`, formData);
+    return await this.uploadFiles(`/api/image/upload`, formData);
   }
 
   async file(id: number): Promise<number> {
-    return await this.post(`/api/${id}`);
+    return await this.post(`/api/image/${id}`);
   }
 }
 

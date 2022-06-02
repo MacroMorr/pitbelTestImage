@@ -14,6 +14,10 @@ class User extends Authentication implements JWTSubject
 
     protected $fillable = ['name', 'username', 'password'];
 
+    protected $hidden = [
+        'password',
+    ];
+
     /**
      * Get the identifier that will be stored in the subject claim of the JWT.
      *

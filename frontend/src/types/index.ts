@@ -1,6 +1,14 @@
+export type TActionLike = "add" | "remove";
+
+export type TLike = {
+  count: number;
+  isLiked?: boolean;
+};
+
 export type TListItem = {
   id: number;
   name: string;
+  likes: TLike;
 };
 
 export type TListParams = {
